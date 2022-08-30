@@ -17,7 +17,6 @@ export default function Home() {
     });
     const data = await response.json();
     setResult(data.result);
-    setAnimalInput("");
   }
 
   return (
