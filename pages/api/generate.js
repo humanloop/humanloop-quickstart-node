@@ -9,15 +9,16 @@ export default async function (req, res) {
       },
       body: JSON.stringify({
         model: "text-davinci-002",
-        prompt_template: `Suggest three names for an animal that is a superhero.
+        prompt_template: `Suggest a name for an animal that is a superhero.
         Animal: Cat
-        Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
+        Name: Captain Sharpclaw
         Animal: Dog
-        Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
+        Name: Ruff the Protector
         Animal: {{animal}}
-        Names:`,
+        Name:`,
         parameters: {
           temperature: 0.6,
+          n: 1,
         },
         inputs: { animal: req.body.animal },
         source: "default",
@@ -30,5 +31,6 @@ export default async function (req, res) {
   );
 
   const data = await completion.json();
-  res.status(200).json({ result: data.logs[0].output });
+  console.log(JSON.stringify(data, null, 2));
+  res.status(200).json({ result: data.logs[0] });
 }
