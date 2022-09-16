@@ -1,6 +1,6 @@
 export default async function (req, res) {
   const completion = await fetch(
-    "https://neostaging.humanloop.ml/models/generate",
+    "https://api.humanloop.com/models/generate",
     {
       method: "POST",
       headers: {
