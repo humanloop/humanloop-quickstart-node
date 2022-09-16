@@ -1,5 +1,5 @@
 export default async function (req, res) {
-  const response = await fetch("https://neostaging.humanloop.ml/feedback", {
+  const response = await fetch("https://api.humanloop.com/feedback", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
