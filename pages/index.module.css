@@ -29,6 +29,9 @@
 .main .icon {
   width: 34px;
 }
+.main .img {
+  width: 200px;
+}
 .main h3 {
   font-size: 32px;
   line-height: 40px;
@@ -43,7 +46,7 @@
 }
 .main input[type="text"] {
   padding: 12px 16px;
-  border: 1px solid #10a37f;
+  border: 1px solid #353740;
   border-radius: 4px;
   margin-bottom: 24px;
 }
@@ -54,7 +57,7 @@
 .main input[type="submit"] {
   padding: 12px 0;
   color: #fff;
-  background-color: #10a37f;
+  background-color: #e07719;
   border: none;
   border-radius: 4px;
   text-align: center;
@@ -62,16 +65,41 @@
 }
 .main .result {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 10px;
   font-size: 18px;
-  font-weight: bold;
+  /*font-weight: bold;*/
   margin-top: 40px;
+}
+.main .result .text {
+  max-width: 60ch;
+  display: flex;
+  align-items: center;
+}
+.main .result .buttons {
+  display: flex;
+  gap: 8px;
 }
 .feedback {
   cursor: pointer;
   padding: 6px 12px 5px;
   border-radius: 4px;
+  border: 1px solid black;
   font-size: 20px;
   display: inline-flex;
+}
+.copy {
+  margin-left: 12px;
+  border: none!important;
+  cursor: pointer;
+  padding: 6px 12px 5px;
+  border-radius: 4px;
+  font-size: 20px;
+  display: inline-flex;
+  background: transparent;
+}
+.copy:hover{
+    background: #eee;
+
 }

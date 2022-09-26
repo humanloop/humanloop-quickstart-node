@@ -7,17 +7,17 @@ export default async function (req, res) {
     },
     body: JSON.stringify({
       log_id: req.body.logId,
-      label: req.body.feedback,
-      group: "explicit",
-      project: "openai-quickstart",
+      label: req.body.label,
+      group: req.body.group,
+      project: req.body.project,
     }),
   });
   console.log(
     JSON.stringify({
       log_id: req.body.logId,
-      label: req.body.feedback,
-      group: "explicit",
-      project: "openai-quickstart",
+      label: req.body.label,
+      group: req.body.group,
+      project: req.body.project,
     })
   );
 
