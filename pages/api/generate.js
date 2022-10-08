@@ -1,6 +1,7 @@
+
 export default async function (req, res) {
   const completion = await fetch(
-    "https://api.humanloop.com/models/generate",
+    "https://api.humanloop.com/v1/generate",
     {
       method: "POST",
       headers: {
@@ -8,21 +9,8 @@ export default async function (req, res) {
         "X-API-KEY": process.env.HUMANLOOP_API_KEY,
       },
       body: JSON.stringify({
-        model: "text-davinci-002",
-        prompt_template: `Suggest a name for an animal that is a superhero.
-        Animal: Cat
-        Name: Captain Sharpclaw
-        Animal: Dog
-        Name: Ruff the Protector
-        Animal: {{animal}}
-        Name:`,
-        parameters: {
-          temperature: 0.6,
-          n: 1,
-        },
-        inputs: { animal: req.body.animal },
-        source: "default",
-        project: "openai-quickstart",
+        inputs: { question: req.body.question },
+        project: "demo-ask-paul-graham",
         provider_api_keys: {
           OpenAI: process.env.OPENAI_API_KEY,
         },

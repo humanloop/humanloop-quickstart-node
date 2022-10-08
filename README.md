@@ -26,7 +26,7 @@ This is an example pet name generator app used in the OpenAI API [quickstart tut
    $ cp .env.example .env
    ```
 
-6. Add your [API key](https://beta.openai.com/account/api-keys) to the newly created `.env` file
+6. Add your OpenAI [API key](https://beta.openai.com/account/api-keys) to the newly created `.env` as `OPEN_API_KEY=...` and add your Humanloop [API key](https://app.humanloop.com/llama/settings) as `HUMANLOOP_API_KEY=...`
 
 7. Run the app
 

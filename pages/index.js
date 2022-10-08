@@ -25,8 +25,19 @@ function ThumbsDownButton({ feedback, handleFeedback }) {
   );
 }
 
+function CopyButton({handleCopy }) {
+  return (
+    <button
+      className={styles.copy}
+      onClick={() => handleCopy("📋")}
+    >
+      📋
+    </button>
+  );
+}
+
 export default function Home() {
-  const [animalInput, setAnimalInput] = useState("");
+  const [questionInput, setQuestionInput] = useState("");
   const [result, setResult] = useState();
   const [logId, setLogId] = useState();
   const [feedback, setFeedback] = useState(null);
@@ -38,7 +49,7 @@ export default function Home() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ animal: animalInput }),
+      body: JSON.stringify({ question: questionInput }),
     });
     const data = await response.json();
     setResult(data.result.output);
@@ -53,43 +64,60 @@ export default function Home() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ feedback: feedback, logId: logId }),
+      body: JSON.stringify({ label: feedback, group: "feedback", logId: logId }),
     });
     setFeedback(feedback);
   }
 
+    async function handleCopy(label) {
+    event.preventDefault();
+    const response = await fetch("/api/feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ label: label, group: "implicit", logId: logId }),
+    });
+    alert("Copied to clipboard")
+  }
+
   return (
     <div>
-      <Head>
-        <title>OpenAI + Humanloop Quickstart</title>
-        <link rel="icon" href="/dog.png" />
-      </Head>
 
       <main className={styles.main}>
-        <img src="/dog.png" className={styles.icon} />
-        <h3>Name my pet</h3>
+        <img src="/pg.jpeg" className={styles.img} />
+        <h3>Ask PG</h3>
         <form onSubmit={onSubmit}>
           <input
             type="text"
-            name="animal"
-            placeholder="Enter an animal"
-            value={animalInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
+            name="question"
+            placeholder="Ask a question"
+            value={questionInput}
+            onChange={(e) => setQuestionInput(e.target.value)}
           />
-          <input type="submit" value="Generate names" />
+          <input type="submit" value="Generate advice" />
         </form>
 
         {result && (
           <div className={styles.result}>
-            {result}
-            <ThumbsUpButton
-              feedback={feedback}
-              handleFeedback={handleFeedback}
-            />
-            <ThumbsDownButton
-              feedback={feedback}
-              handleFeedback={handleFeedback}
-            />
+            <div className={styles.text}>
+              {result}
+              <div className={styles.text}>
+                <CopyButton
+                  handleCopy={handleCopy}
+                />
+              </div>
+            </div>
+            <div className={styles.buttons}>
+              <ThumbsUpButton
+                feedback={feedback}
+                handleFeedback={handleFeedback}
+              />
+              <ThumbsDownButton
+                feedback={feedback}
+                handleFeedback={handleFeedback}
+              />
+           </div>
           </div>
         )}
       </main>
