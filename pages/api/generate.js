@@ -10,7 +10,7 @@ export default async function (req, res) {
       },
       body: JSON.stringify({
         inputs: { question: req.body.question },
-        project: "demo-ask-paul-graham",
+        project: "ask-paul-graham",
         provider_api_keys: {
           OpenAI: process.env.OPENAI_API_KEY,
         },
